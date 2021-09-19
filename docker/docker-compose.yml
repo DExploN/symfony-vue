@@ -11,15 +11,21 @@ services:
     image: nginx
     ports:
       - "80:80"
-      - "8080:8080"
     links:
       - sv_fpm
       - sv_node
   sv_node:
-    image: node
     container_name: sv_node
     volumes:
       - ./../frontend:/var/www/frontend
+    working_dir: /var/www/frontend
+    command: npm run serve
+    build:
+      context: ./node
+      args:
+        - UID
+        - USER_NAME
+    user: ${USER_NAME}
     ports:
       - "8080:8080"
   sv_fpm:
