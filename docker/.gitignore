@@ -1,0 +1,5 @@
+/*.sql
+/mysql/dump/*.sql
+/mysql/logs/
+/redis/volumes/
+/.env
